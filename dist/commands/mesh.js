@@ -2,14 +2,15 @@ import { google } from 'googleapis';
 import readline from 'readline';
 import fileSystem from 'fs';
 import dotenv from 'dotenv';
+import { getGoogleToken } from '../services/authService.js';
+import { createAuthClient } from '../services/googleAuth.js';
 const TOKEN_FILE_PATH = 'token.json';
 export async function runMesh() {
-    const oauth2Client = createAuthClient();
-    const token = await getToken(oauth2Client);
-    await getDaySummary(token, oauth2Client);
+    dotenv.config();
+    const token = await getGoogleToken();
+    await getDaySummary(token, createAuthClient());
 }
 async function getToken(oauth2Client) {
-    dotenv.config();
     let validToken;
     const storedToken = getAuthTokenFromStorage();
     if (storedToken != null) {
@@ -27,9 +28,6 @@ async function getToken(oauth2Client) {
         validToken = tokens;
     }
     return validToken;
-}
-function createAuthClient() {
-    return new google.auth.OAuth2(process.env.GOOGLE_SECRET, process.env.GOOGLE_API_KEY, 'http://localhost:3000');
 }
 function getCodeFromUser() {
     return new Promise((resolve) => {
