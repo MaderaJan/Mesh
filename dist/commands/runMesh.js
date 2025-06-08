@@ -1,20 +1,16 @@
-import dotenv from 'dotenv';
-import { getGoogleToken } from '../services/authService.js';
-import { createAuthClient } from '../services/googleAuth.js';
-import { getDaySummary } from '../services/calendarFetcher.js';
-export async function runMesh() {
-    dotenv.config();
-    const token = await getGoogleToken();
-    await getDaySummary(token, createAuthClient());
-}
-// TODO: Write tests
-// TODO: impl structure as propoused by AI
-// TODO: Continue with impl for github
-function getDayBounds({ date = new Date() }) {
-    const startOfDay = new Date(date);
-    startOfDay.setHours(0, 0, 0, 0);
-    const endOfDay = new Date(date);
-    endOfDay.setHours(23, 59, 59, 999);
-    return { startOfDay, endOfDay };
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.runMesh = runMesh;
+const dotenv_1 = __importDefault(require("dotenv"));
+const authService_js_1 = require("../services/authService.js");
+const googleAuth_js_1 = require("../services/googleAuth.js");
+const calendarFetcher_js_1 = require("../services/calendarFetcher.js");
+async function runMesh() {
+    dotenv_1.default.config();
+    const token = await (0, authService_js_1.getGoogleToken)();
+    await (0, calendarFetcher_js_1.getDaySummary)(token, (0, googleAuth_js_1.createAuthClient)());
 }
 //# sourceMappingURL=runMesh.js.map

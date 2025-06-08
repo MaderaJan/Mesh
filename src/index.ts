@@ -1,5 +1,5 @@
 import { Command } from 'commander'
-import { runMesh } from './commands/runMesh.js'
+import { runMesh } from './commands/runMesh'
 
 const program = new Command()
 

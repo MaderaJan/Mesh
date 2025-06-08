@@ -1,6 +1,6 @@
 import { Credentials } from 'google-auth-library'
-import { getAuthTokenFromStorage, persistToken } from '../storage/tokenRepository.js'
-import { getGoogleTokenFromApi } from './googleAuth.js';
+import { getAuthTokenFromStorage, persistToken } from '../storage/tokenRepository'
+import { getGoogleTokenFromApi } from './googleAuth';
 
 export async function getGoogleToken() {
     let validToken: Credentials;
@@ -10,7 +10,7 @@ export async function getGoogleToken() {
     if (storedToken != null) {
         validToken = storedToken;
     } else {
-        const { tokens } = await getGoogleTokenFromApi()
+        const tokens = await getGoogleTokenFromApi()
         persistToken(tokens);
 
         validToken = tokens;

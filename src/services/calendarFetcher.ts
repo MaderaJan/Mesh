@@ -1,6 +1,6 @@
 import { google } from 'googleapis'
 import { Credentials, OAuth2Client } from 'google-auth-library';
-import { getDayBounds } from '../utils/dateUtils.js';
+import { getDayBounds } from '../utils/dateUtils';
 
 export async function getDaySummary(tokens: Credentials, oauth2Client: OAuth2Client) {
     try {
