@@ -5,6 +5,7 @@
   "scripts": {
     "build": "npx tsc",
     "start:mesh": "npm run build && node dist/index.js mesh",
+    "start:threads": "npm run build && node dist/index.js threads",
     "test": "jest"
   },
   "author": "",
